@@ -1,0 +1,188 @@
+/* Shared shell for the rebuilt site. Original rules stay in default.css. */
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+img { vertical-align: top; }
+
+.page { position: relative; width: 986px; }
+@media (min-width: 1000px) {
+  html { overflow-x: hidden; }  /* the decoration below may reach past narrow windows */
+  .page { margin: 0 auto; }
+  body#subpage { background: none; }
+  /* default.css drew this at x=985 of the body; keep it beside the centred page. */
+  body#subpage .page::after { content: ""; position: absolute; top: 0; left: 985px; width: 277px; height: 186px; background: url(../img/sub.left.bg.jpg) no-repeat; }
+}
+
+/* Top menu bar: drawn over the visual, as the Flash menu was. */
+.gnb-bar { position: absolute; top: 0; left: 0; z-index: 10; width: 980px; height: 70px; background: url(../flash/menu_bg.png) no-repeat 0 0; }
+.logo { position: absolute; top: 0; left: 0; width: 260px; height: 70px; }
+.gnb-toggle { display: none; }
+.gnb { position: absolute; top: 0; left: 290px; }
+.gnb-list { display: flex; }
+.gnb-list > li { position: relative; }
+.gnb-list > li + li > .gnb-top::before { content: ""; position: absolute; left: 0; top: 24px; height: 12px; border-left: 1px solid #b9b9b9; }
+.gnb-top { position: relative; display: block; width: 138px; height: 70px; padding-top: 19px; box-sizing: border-box; text-align: center; }
+/* default.css puts Dotum/AppleGothic on every element; those have no real bold
+   on many systems, so the menu uses fonts that do. */
+.gnb, .gnb * { font-family: "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Noto Sans KR", "Nanum Gothic", sans-serif; }
+.gnb-top .ko { display: block; font-size: 14px; font-weight: 700; color: #1a1a1a; letter-spacing: 1px; }
+.gnb-top .en { display: block; font-size: 9px; line-height: 12px; color: #b0b0b0; font-family: Tahoma, Arial, sans-serif; }
+.gnb-top:hover, .gnb-top:focus { text-decoration: none; }
+.gnb-top:hover .ko, .gnb-top:focus .ko { color: #2a5a8b; }
+.gnb-list ul { display: none; position: absolute; top: 60px; left: 10px; min-width: 150px; padding: 6px 0; background: #fff; border: 1px solid #c9cfd8; box-shadow: 0 3px 8px rgba(0,0,0,.15); }
+/* PC only: on phones a tap sets :hover/:focus-within, and switching the open
+   menu's lists to block would move the links under the finger. */
+@media (min-width: 1000px) {
+  .gnb-list > li:hover > ul, .gnb-list > li:focus-within > ul { display: block; }
+}
+.gnb-list ul a { display: block; padding: 3px 14px; white-space: nowrap; color: #333; }
+.gnb-list ul a:hover, .gnb-list ul a:focus { background: #eef2f7; text-decoration: none; }
+/* Not in the original Flash menu; phones need it because they hide the left menu. */
+.gnb .mobile-only { display: none; }
+
+.visual img { display: block; }
+
+/* Subpage: left 165 + main 820, as the original 985px table. */
+.sub-wrap { display: flex; width: 985px; }
+.side { flex: none; width: 165px; }
+.side-menu summary { display: none; }
+/* default.css gives every td a 20px line-height; image-only cells must not grow
+   (the 10px spacer under the banner left a white strip). */
+.side td { line-height: 0; }
+.side img { display: block; }
+/* 지도자 연수 banners: the old site only said "준비중입니다" on click. */
+.preparing { display: block; padding: 0; border: 0; background: none; cursor: pointer; }
+.sub-main { flex: none; width: 820px; }
+.sub-topbar { display: block; }
+.sub-body { display: flex; }
+.content { flex: none; width: 610px; padding-left: 45px; }
+.title-bar { display: flex; align-items: center; height: 38px; margin-bottom: 20px; padding-left: 35px; background: url(../images/title/title_bg.gif) repeat-x; }
+.sub-right { flex: none; width: 165px; }
+/* Cells the original marks font-family:바탕 (e.g. 宗師 해범 선생님). Batang ships
+   with Windows only; elsewhere fall back to a myeongjo face, not the gothic default. */
+.content-body td[style*="바탕"], .content-body td[style*="바탕"] * { font-family: "바탕", "Batang", "AppleMyungjo", "Noto Serif KR", "Nanum Myeongjo", serif !important; }
+.sub-footer { padding: 10px 0 0 8px; }
+.map iframe { display: block; border: 0; }
+.map a { display: inline-block; margin-top: 6px; }
+
+/* Boards (after the old nzeo_ver4_bbs skin) */
+.board { width: 600px; margin: 0 auto 30px; }
+.board-list { width: 100%; border-collapse: collapse; border-top: 2px solid #8a9bb5; table-layout: fixed; }
+.board-list th { height: 28px; background: #eef1f6; border-bottom: 1px solid #c9d1de; font-weight: bold; color: #445; }
+.board-list td { padding: 5px 4px; border-bottom: 1px solid #e3e6eb; text-align: center; }
+.board-list .col-num { width: 50px; font-family: Tahoma, sans-serif; font-size: 11px; color: #888; }
+.board-list .col-num.notice { font-weight: bold; color: #2a5a8b; }
+.board-list .col-name { width: 80px; }
+.board-list .col-date { width: 80px; font-family: Tahoma, sans-serif; font-size: 11px; color: #888; }
+.board-list .col-subject { text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pager { margin-top: 14px; text-align: center; }
+.pager a, .pager strong { display: inline-block; min-width: 22px; padding: 2px 4px; }
+.post-head { border-top: 2px solid #8a9bb5; background: #eef1f6; padding: 8px 10px; }
+.post-title { font-size: 13px; font-weight: bold; color: #333; word-break: break-all; }
+.post-meta { display: flex; justify-content: space-between; margin-top: 4px; color: #777; font-size: 11px; }
+.post-files { margin: 8px 10px 0; }
+.post-files li { padding-left: 12px; background: url(../images/main/bu_dot.gif) no-repeat 0 7px; }
+.post-images { text-align: center; }
+.post-image { margin: 20px 0; }
+.post-image img, .post-body img { max-width: 100%; height: auto; }
+.post-body { padding: 15px 10px 30px; border-bottom: 1px solid #c9d1de; line-height: 20px; word-break: break-all; }
+.post-body .video { margin: 10px 0; }
+.post-body iframe { max-width: 100%; border: 0; }
+.post-nav { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; }
+.post-nav a { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.post-nav .list { align-self: flex-end; padding: 3px 12px; border: 1px solid #c9d1de; background: #f6f7f9; }
+
+/* Main page (original 980px table, left aligned) */
+.slides { position: relative; overflow: hidden; }
+.slides .slide { display: block; }
+.slides .slide + .slide { position: absolute; top: 0; left: 0; }
+.slides .slide { opacity: 0; transition: opacity .8s ease; }
+.slides .slide.on { opacity: 1; }
+.main-visual { width: 980px; height: 320px; }
+.main-body { display: flex; width: 980px; }
+.main-book { flex: none; width: 225px; height: 320px; margin-left: 8px; }
+.main-center { flex: none; width: 310px; margin: 0 12px 0 31px; }
+.main-center .promo { display: block; width: 295px; height: 125px; margin: 13px 0 11px 3px; background: #000; object-fit: contain; }
+.main-right { flex: 1; min-width: 0; padding-top: 7px; }
+.tabs { display: flex; align-items: center; height: 20px; padding-left: 3px; background: url(../img/m.notice.line.jpg) repeat-x; }
+.tabs .tab + .tab { margin-left: 1px; }
+.tabs .more { margin-left: auto; padding-right: 6px; line-height: 0; }
+.recent { display: flex; margin: 8px 0 12px; }
+.recent-img { flex: none; }
+.recent-list { flex: 1; min-width: 0; }
+.recent-list li { height: 20px; padding-left: 16px; background: url(../img/m.nemo.jpg) no-repeat 0 9px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.recent-list li a { line-height: 20px; }
+.banners { display: flex; gap: 11px; }
+.main-footer { padding: 10px 0 0 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .slides .slide { transition: none; }
+}
+
+/* ---------- Phones and narrow windows ---------- */
+@media (max-width: 999px) {
+  html, body { height: auto; }
+  body#subpage { background: none; }
+  .page, .sub-wrap, .main-body, .main-visual, .sub-main, .board { width: auto; }
+  img, video, iframe { max-width: 100%; }
+  img { height: auto; }
+
+  .gnb-bar { position: relative; width: auto; height: 68px; background: #fff url(../flash/menu_bg.png) no-repeat -24px -5px; border-bottom: 1px solid #d5dbe4; }
+  .logo { width: 220px; height: 68px; }
+  .gnb-toggle { display: block; position: absolute; top: 12px; right: 8px; width: 44px; height: 44px; border: 0; background: none; cursor: pointer; }
+  .gnb-toggle .bars, .gnb-toggle .bars::before, .gnb-toggle .bars::after { position: absolute; left: 11px; width: 22px; height: 2px; background: #333; content: ""; }
+  .gnb-toggle .bars { top: 21px; }
+  .gnb-toggle .bars::before { left: 0; top: -7px; }
+  .gnb-toggle .bars::after { left: 0; top: 7px; }
+  .gnb { display: none; position: absolute; top: 68px; left: 0; right: 0; background: #fff; border-bottom: 2px solid #8a9bb5; box-shadow: 0 6px 12px rgba(0,0,0,.15); }
+  .gnb.open { display: block; }
+  .gnb-list { display: block; padding: 4px 16px 12px; }
+  .gnb-list > li + li > .gnb-top::before { display: none; }
+  .gnb-top { width: auto; height: auto; padding: 10px 0 4px; text-align: left; }
+  .gnb-top .ko { font-size: 15px; }
+  .gnb-top .en { display: none; }
+  .gnb-list ul { display: flex; flex-wrap: wrap; position: static; min-width: 0; padding: 0 0 6px; border: 0; box-shadow: none; }
+  .gnb-list ul a { padding: 6px 12px 6px 0; font-size: 14px; color: #2a5a8b; }
+
+  .visual img { width: 100%; }
+  .main-visual { height: auto; }
+
+  .sub-wrap { display: block; }
+  /* The hamburger menu covers the same pages, so the left menu is dropped. */
+  .side { display: none; }
+  .gnb .mobile-only { display: list-item; }
+  .sub-topbar, .sub-right { display: none; }
+  .sub-body { display: block; }
+  .content { width: auto; padding: 16px 16px 0; }
+  .title-bar { overflow: hidden; }
+  .content-body { overflow-x: auto; }
+  /* Original pages use tables for layout: stack their cells on phones.
+     Real data tables (cellspacing="1" grid) and board lists stay tables. */
+  .content-body table:not([cellspacing="1"]):not(.board-list):not(.subcategory),
+  .content-body table:not([cellspacing="1"]):not(.board-list):not(.subcategory) > tbody,
+  .content-body table:not([cellspacing="1"]):not(.board-list):not(.subcategory) > tbody > tr,
+  .content-body table:not([cellspacing="1"]):not(.board-list):not(.subcategory) > tbody > tr > td {
+    display: block; width: auto !important; height: auto !important; background-image: none;
+  }
+  .content-body table.subcategory, .content-body table.subcategory > tbody { display: block; }
+  .content-body table.subcategory > tbody > tr { display: flex; flex-wrap: wrap; gap: 4px; }
+  .content-body table.subcategory > tbody > tr > td { padding: 0; }
+  .content-body table[cellspacing="1"] { width: auto !important; min-width: 100%; }
+  .content-body, .content-body td, .content-body p, .content-body div, .content-body span, .content-body font { font-size: 14px; line-height: 1.7; }
+  .map iframe, .video iframe, .post-body iframe { width: 100%; height: auto; aspect-ratio: 500 / 405; }
+  .sub-footer, .main-footer { padding: 16px 8px 0; }
+
+  .board-list .col-name { width: 64px; }
+  .board-list .col-num { width: 36px; }
+  .board-list .col-date { width: 74px; }
+
+  .main-body { display: block; padding: 0 16px; }
+  .main-book { display: none; }
+  .main-center { width: auto; margin: 16px 0; }
+  .main-center .promo { width: 100%; height: auto; aspect-ratio: 4 / 3; margin: 12px 0; }
+  .banners { margin-top: 12px; }
+}
+
+/* 404 page */
+.notfound { padding: 40px 45px 60px; }
+.notfound h2 { margin-bottom: 14px; font-size: 18px; color: #2a5a8b; }
+.notfound p { margin-bottom: 10px; font-size: 13px; }
+.notfound .home { display: inline-block; margin-top: 6px; padding: 6px 16px; border: 1px solid #c9d1de; background: #f6f7f9; }
